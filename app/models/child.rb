@@ -258,7 +258,7 @@ class Child < CouchRest::Model::Base
       boolean :duplicate
       boolean(:active) {|c| !c.duplicate}
       boolean :reunited
-      boolean :flagged
+      boolean :flag
     end
   end
 

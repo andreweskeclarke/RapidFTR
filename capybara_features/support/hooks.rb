@@ -1,9 +1,4 @@
 Before do
-  Child.stub :index_record => true, :reindex! => true, :build_solar_schema => true
-  Sunspot.stub :index => true, :index! => true
-end
-
-Before do
   I18n.locale = I18n.default_locale = :en
   CouchRest::Model::Base.descendants.each do |model|
     docs = model.database.documents["rows"].map { |doc|
