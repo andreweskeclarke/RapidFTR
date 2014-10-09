@@ -73,13 +73,13 @@ class Enquiry < BaseModel
     %w(unique_identifier short_id created_by created_by_full_name last_updated_by last_updated_by_full_name created_organisation)
   end
 
-  def self.build_date_fields_for_solar
+  def self.default_time_fields
     %w(created_at last_updated_at)
   end
 
   @set_up_solr_fields = proc do
     text_fields = Enquiry.build_text_fields_for_solar
-    date_fields = Enquiry.build_date_fields_for_solar
+    time_fields = Enquiry.default_time_fields
 
     text_fields.each do |field_name|
       string Enquiry.sortable_field_name(field_name) do
@@ -87,7 +87,7 @@ class Enquiry < BaseModel
       end
       text field_name
     end
-    date_fields.each do |field_name|
+    time_fields.each do |field_name|
       time field_name
       time Enquiry.sortable_field_name(field_name) do
         self[field_name]

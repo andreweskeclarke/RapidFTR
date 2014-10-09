@@ -262,7 +262,7 @@ describe ChildrenController, :type => :controller do
         fake_field_worker_login
         get :index
         expect(assigns[:system_fields]).to include(*Child.default_child_fields)
-        expect(assigns[:system_fields]).to include(*Child.build_date_fields_for_solar)
+        expect(assigns[:system_fields]).to include(*Child.default_time_fields)
       end
 
       it 'should assign form fields for order by drop down' do

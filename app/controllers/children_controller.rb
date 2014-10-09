@@ -33,7 +33,7 @@ class ChildrenController < ApplicationController
     @children = search.results
 
     @form_sections = form_sections
-    @system_fields = Child.default_child_fields + Child.build_date_fields_for_solar
+    @system_fields = Child.default_child_fields + Child.default_time_fields
 
     respond_to do |format|
       format.html

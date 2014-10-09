@@ -38,8 +38,12 @@ class Child < BaseModel
     %w(unique_identifier short_id created_by created_by_full_name last_updated_by last_updated_by_full_name created_organisation)
   end
 
-  def self.build_date_fields_for_solar
+  def self.default_time_fields
     %w(created_at last_updated_at reunited_at flag_at)
+  end
+
+  def self.build_date_fields_for_solar
+    []
   end
 
   def self.sortable_field_name(field)
@@ -48,6 +52,7 @@ class Child < BaseModel
 
   @set_up_solr_fields = proc do
     text_fields = Child.build_text_fields_for_solar
+    time_fields = Child.default_time_fields
     date_fields = Child.build_date_fields_for_solar
 
     text_fields.each do |field_name|
@@ -56,7 +61,7 @@ class Child < BaseModel
       end
       text field_name
     end
-    date_fields.each do |field_name|
+    time_fields.each do |field_name|
       time field_name
       # TODO: Not needed but for compatibility with sortable_field_name
       time Child.sortable_field_name(field_name) do

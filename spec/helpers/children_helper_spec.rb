@@ -88,7 +88,7 @@ describe ChildrenHelper, :type => :helper do
     end
 
     it 'should translate all default and date field names' do
-      system_fields = Child.default_child_fields + Child.build_date_fields_for_solar
+      system_fields = Child.default_child_fields + Child.default_time_fields
       options = helper.order_options_array_from system_fields, nil
       expect(options[t('children.order_by.system_fields')].flatten).to_not include(a_string_matching(/translation_missing/))
     end
